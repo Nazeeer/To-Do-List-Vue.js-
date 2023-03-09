@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <link rel="stylesheet" href="test-vue.css">
+</head>
+<body>
+    
+    <div id="el-app" class="container">
+        <form>
+            <input type="text" placeholder="Type Your task"  v-model="taskText"> 
+            <div class="controller">
+                <button @click="addTask">Add Task</button>
+                <button class="delete-all" @click="deleteAll">Delete All</button>
+            </div>
+        </form>
+        <div class="task-list" v-for="(task ,index) in tasks">
+            <div class="task-box">
+                <span class="text">{{task.word}}</span>
+                <button class="delete" @click="deleteTask(index)">Delete</button>
+            </div>
+        </div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#el-app",
+            data: {
+                tasks:[
+                    // {word:'First Task',done:false}
+                    // {word:'First Task',done:false}
+                    // {word:'First Task',done:false}
+                    // {word:'First Task',done:false}
+                    // {word:'First Task',done:false}
+                    // {word:'First Task',done:false}
+                ],
+                taskText:'',
+            },
+            methods:{
+                addTask: function(e){
+                    e.preventDefault();
+                    this.tasks.push({word: this.taskText,done:false});
+                    this.taskText = null;
+                },
+                deleteTask(index){
+                    this.tasks.splice(index,1);
+                },
+                deleteAll(e){
+                    e.preventDefault();
+                    this.tasks = [];
+                }
+            }
+        });
+    </script>
+</body>
+</html>
